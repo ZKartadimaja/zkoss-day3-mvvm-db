@@ -1,0 +1,37 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul"?>
+<window mode="popup" width="600px" height="auto" position="center" self="@define(content)">
+    <grid>
+        <auxhead>
+            <auxheader label="Reset Password Form" colspan="2" style="font-size:18px" align="center">
+            </auxheader>
+        </auxhead>
+        <columns>
+            <column></column>
+            <column></column>
+        </columns>
+        <rows>
+            <row>
+                <label value="Username"></label>
+                <textbox type="text" constraint="no empty" width="100%"/>
+            </row>
+            <row>
+                <label value="Email"></label>
+                <textbox type="text" constraint="no empty" width="100%"/>
+            </row>
+            <row>
+                <label value="Lucky Number"></label>
+                <spinner constraint="no empty" width="100%"/>
+            </row>
+            <row spans="2" align="center">
+                <button onClick="datasuccess" width="50%" style="background-color:black">Reset Password</button>
+            </row>
+        </rows>
+    </grid>
+    <popup id="datasuccess" width="300px">
+        <vbox>
+            <label>Your Password Has Been Reset, Please Check Your Email</label>
+        </vbox>
+    </popup>
+</window>
+
+

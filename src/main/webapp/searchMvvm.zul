@@ -1,0 +1,45 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul"?>
+<window title="Search" width="100%" border="normal" onOK="@command('search')"
+        viewModel="@id('vm') @init('com.fif.viewModel.SearchViewModel')" style="margin:auto" self="@define(content)" >
+    <label style="color:black">Keyword : </label>
+    <textbox value="@save(vm.keyword)" style="height: 30px" placeholder="Username, Gender, or Date"/>
+    <button label="Search" iconSclass="z-icon-search" onClick="@command('search')" style="margin: 0 0 0px 5px; font-size:14px; height: 30px; padding: revert" />
+    <listbox model="@init(vm.personList)" emptyMessage="No person found in the result" rows="5"
+             selectedItem="@save(vm.selectedPerson)">
+        <listhead sizable="true" height="14px" style="text-align:center">
+            <listheader label="ID" style="font-size:14px; font-weight:bold" />
+            <listheader label="Name" style="font-size:14px; font-weight:bold"/>
+            <listheader label="Gender" style="font-size:14px; font-weight:bold"/>
+            <listheader label="Birthday Date" style="font-size:14px; font-weight:bold"/>
+            <listheader label="City" style="font-size:14px; font-weight:bold"/>
+            <listheader label="Province" style="font-size:14px; font-weight:bold"/>
+            <listheader label="Lucky Number" style="font-size:14px; font-weight:bold"/>
+            <listheader label="Delete" style="font-size:14px; font-weight:bold"/>
+            <listheader label="Update" style="font-size:14px; font-weight:bold"/>
+        </listhead>
+        <template name="model">
+            <listitem style="text-align:center">
+                <listcell label="@init(each.id)" style="font-size:12px"/>
+                <listcell label="@init(each.fullName)" style="font-size:12px"/>
+                <listcell label="@init(each.gender)" style="font-size:12px"/>
+                <listcell label="@init(each.birthdayDate)" style="font-size:12px"/>
+                <listcell label="@init(each.city)" style="font-size:12px"/>
+                <listcell label="@init(each.province)" style="font-size:12px"/>
+                <listcell label="@init(each.luckyNumber)" style="font-size:12px"/>
+                <listcell iconSclass="z-icon-times" onClick="@command('deletePerson', id=each.id)" />
+                <listcell iconSclass="z-icon-edit" onClick="@command('updateById', id=each.id)"/>
+            </listitem>
+        </template>
+    </listbox>
+    <hlayout style="margin-top:20px" width="100%">
+        <vlayout hflex="1">
+            <label value="@load(vm.selectedPerson.id)"/>
+            <label value="@load(vm.selectedPerson.fullName)"/>
+            <label value="@load(vm.selectedPerson.gender)"/>
+            <label value="@load(vm.selectedPerson.birthdayDate)"/>
+            <label value="@load(vm.selectedPerson.city)"/>
+            <label value="@load(vm.selectedPerson.province)"/>
+            <label value="@load(vm.selectedPerson.luckyNumber)"/>
+        </vlayout>
+    </hlayout>
+</window>

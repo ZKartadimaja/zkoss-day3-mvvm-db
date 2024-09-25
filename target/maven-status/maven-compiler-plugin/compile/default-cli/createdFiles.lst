@@ -1,0 +1,11 @@
+com\fif\services\impl\LogDao.class
+com\fif\entity\Person.class
+com\fif\viewModel\EditViewModel.class
+com\fif\viewModel\MyViewModel.class
+com\fif\repository\PersonRepository.class
+com\fif\entity\Log.class
+com\fif\services\impl\PersonServiceImpl.class
+com\fif\services\MyService.class
+com\fif\services\PersonService.class
+com\fif\viewModel\SearchViewModel.class
+com\fif\services\impl\MyServiceImpl.class

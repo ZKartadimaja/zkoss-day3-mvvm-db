@@ -1,0 +1,23 @@
+<zk>
+    <window title="Welcome Page" border="normal" width="400px" height="400px" closable="true" mode="highlighted">
+        <vbox align="center" spacing="20px">
+            <label value="Welcome to Our Application!" style="font-size: 24px; font-weight: bold;"/>
+            <label value="We are glad to have you here." style="font-size: 16px;"/>
+            <label value="Explore our features and enjoy!" style="font-size: 16px;"/>
+            <separator/>
+
+            <button label="Get Started" onClick='self.getDesktop().getExecution().sendRedirect("index.zul")' />
+
+            <separator/>
+            <button label="Menu" iconSclass="z-icon-bars" tooltip="menuPopup" />
+            <popup id="menuPopup">
+                <vbox>
+                    <label value="Log In" style="cursor: pointer;" onClick='self.getDesktop().getExecution().sendRedirect("login.zul")' />
+                    <label value="Register" style="cursor: pointer;" onClick='self.getDesktop().getExecution().sendRedirect("helloworld.zul")' />
+                    <label value="Check Data" style="cursor: pointer;" onClick='self.getDesktop().getExecution().sendRedirect("searchMvvm.zul")' />
+                    <label value="Forgot Password" style="cursor: pointer;" onClick='self.getDesktop().getExecution().sendRedirect("forgot.zul")' />
+                </vbox>
+            </popup>
+        </vbox>
+    </window>
+</zk>

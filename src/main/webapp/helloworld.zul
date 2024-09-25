@@ -1,0 +1,147 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul"?>
+<zk>
+    <zscript>
+        public void changeSubmitStatus() {
+            boolean isChecked = ((Checkbox) self.getFellow("acceptTermBox")).isChecked();
+            Button submitButton = (Button) self.getFellow("submitButton");
+
+        if (isChecked) {
+            submitButton.setDisabled(false);
+            submitButton.setIconSclass("z-icon-check");
+        } else {
+            submitButton.setDisabled(true);
+            submitButton.setIconSclass("");
+            }
+        }
+    </zscript>
+
+    <window mode="highlighted" border="normal" position="center" height="auto"
+            apply="org.zkoss.bind.BindComposer"  self="@define(content)" viewModel="@id('vm') @init('com.fif.viewModel.SearchViewModel')">
+
+        <zscript>
+            public void resetValue() {
+                usernamebox.setRawValue("");
+                usernamebox.setConstraint("no empty");
+                passwordbox.setRawValue("");
+                passwordbox.setConstraint("no empty");
+<!--                repasswordbox.setRawValue("");-->
+<!--                repasswordbox.setConstraint("no empty");-->
+                fullnamebox.setRawValue("");
+                fullnamebox.setConstraint("no empty");
+                gendergroup.setSelectedItem(null);
+                birthdatebox.setRawValue("");
+                birthdatebox.setConstraint("no empty");
+                citybox.setRawValue("");
+                citybox.setConstraint("no empty");
+                provincebox.setRawValue("");
+                provincebox.setConstraint("no empty");
+                luckynumberbox.setRawValue("");
+                luckynumberbox.setConstraint("no empty");
+                acceptTermBox.setChecked(false);
+                }
+        </zscript>
+
+        <grid hflex="min" vflex="min" style="align-items:center">
+            <auxhead>
+                <auxheader iconSclass="z-icon-user" label="Registration Form" colspan="2" style="font-size:16px"/>
+            </auxhead>
+            <columns sizable="true">
+                <column width="180px"/>
+                <column />
+            </columns>
+            <rows>
+                <row>
+                    <label value="User Name :" style="font-size:14px"/>
+                    <textbox id="usernamebox" value="@save(vm.username)" width="100%" constraint="no empty"/>
+                </row>
+                <row>
+                    <label value="Password :" style="font-size:14px"/>
+                    <textbox id="passwordbox" value="@save(vm.password)" type="password" width="100%"/>
+                </row>
+<!--                <row>-->
+<!--                    <label value="Re-Entry Password :" style="font-size:14px"/>-->
+<!--                    <textbox id="repasswordbox" type="password" width="100%"/>-->
+<!--                </row>-->
+                <row>
+                    <label value="Full Name :" style="font-size:14px"/>
+                    <textbox id="fullnamebox" value="@save(vm.fullName)" type="text" width="100%"/>
+                </row>
+                <row>
+                    <label value="Gender:" style="font-size:14px"/>
+                    <radiogroup id="gendergroup" selectedItem="@bind(vm.gender)" onCheck="fruit.value = self.selectedItem.label">
+                        <radio label="Male" value="Male" iconSclass="z-icon-male"/>
+                        <radio label="Female" value="Female" iconSclass="z-icon-female"/>
+                    </radiogroup>
+                </row>
+                <row>
+                    <label value="Birthday:" style="font-size:14px"/>
+                    <datebox id="birthdatebox" value="@save(vm.birthdayDate)" width="100%" constraint="no empty, no future"/>
+                </row>
+                <row>
+                    <label value="City:" style="font-size:14px"/>
+                    <combobox id="citybox" selectedItem="@save(vm.city)" width="100%" constraint="no empty">
+                        <comboitem label="Bandung" value="Bandung"/>
+                        <comboitem label="East Jakarta" value="East Jakarta"/>
+                        <comboitem label="Central Jakarta" value="Central Jakarta"/>
+                        <comboitem label="West Jakarta" value="West Jakarta"/>
+                        <comboitem label="South Jakarta" value="South Jakarta"/>
+                        <comboitem label="North Jakarta" value="North Jakarta"/>
+                        <comboitem label="Thousand Island" value="Thousand Island"/>
+                        <comboitem label="Bogor" value="Bogor"/>
+                        <comboitem label="Cilegon" value="Cilegon"/>
+                        <comboitem label="Tangerang" value="Tangerang"/>
+                    </combobox>
+                </row>
+                <row>
+                    <label value="Province:" style="font-size:14px"/>
+                    <combobox id="provincebox" selectedItem="@save(vm.province)" width="100%" constraint="no empty">
+                        <comboitem label="West Java" value="West java"/>
+                        <comboitem label="East Java" value="East java"/>
+                        <comboitem label="Central Java" value="Central java"/>
+                        <comboitem label="Banten" value="Banten"/>
+                        <comboitem label="DKI Jakarta" value="DKI Jakarta"/>
+                    </combobox>
+                </row>
+                <row>
+                    <label value="Lucky Number" style="font-size:14px"/>
+                    <spinner id="luckynumberbox" value="@bind(vm.luckyNumber)" step="1" width="100%" constraint="no empty"/>
+                </row>
+                <row spans="2" align="center">
+                    <span>
+                        <checkbox id="acceptTermBox" onCheck="changeSubmitStatus()" style="font-size:14px"/>
+                        <label tooltip="any"> Accept Term of Use (Click for detail)</label>
+                        <popup id="any" width="300px">
+                            <vbox>
+                                Term of Use.
+                                <div>
+                                    Pasal 1
+                                </div>
+                                <div>
+                                    Pasal 2
+                                </div>
+                            </vbox>
+                        </popup>
+                    </span>
+                </row>
+                <row spans="2" align="center">
+                    <span>
+                        <toolbarbutton label="Help" tooltip="Help" style="font-size:14px"/>
+                        <popup id="Help" width="300px">
+                            <vbox>
+                                Any Question?
+                                <div>
+                                    <textbox/>
+                                </div>
+                            </vbox>
+                        </popup>
+                        <button id="resetButton" onClick="resetValue()" style="font-size:14px">Reset</button>
+                        <button id="submitButton" disabled="true" style="font-size:14px" onClick="@command('add')">Submit</button>
+                    </span>
+                </row>
+                <row spans="2">
+                    <label style="color: blue font-size:14px" onClick='self.getDesktop().getExecution().sendRedirect("login.zul")' >Already Have an Account?</label>
+                </row>
+            </rows>
+        </grid>
+    </window>
+</zk>

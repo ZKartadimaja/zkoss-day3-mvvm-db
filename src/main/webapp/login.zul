@@ -1,0 +1,27 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul"?>
+<window mode="overlapped" width="600px" height="auto" position="center" self="@define(content)">
+    <grid>
+        <auxhead>
+            <auxheader label="Log In  Form" colspan="2" style="font-size:18px">
+            </auxheader>
+        </auxhead>
+        <columns>
+            <column></column>
+            <column></column>
+        </columns>
+        <rows>
+            <row>
+                <label value="Username"></label>
+                <textbox type="text" constraint="no empty"/>
+            </row>
+            <row>
+                <label value="Password"></label>
+                <textbox type="password" constraint="no empty"/>
+            </row>
+            <row spans="2" align="center">
+                <button href="usersData.zul">Log in</button>
+            </row>
+
+        </rows>
+    </grid>
+</window>
