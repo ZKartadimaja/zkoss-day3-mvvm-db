@@ -3,6 +3,9 @@ package com.fif.viewModel;
 import com.fif.entity.Person;
 import com.fif.services.PersonService;
 import com.fif.services.impl.PersonServiceImpl;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
@@ -75,6 +78,7 @@ public class SearchViewModel {
 
     @Init
     public void init(){
+        keyword = "";
         personList = new ListModelList<>();
 //        personService.addPerson(new Person("azkaban",
 //                        "aselole",
